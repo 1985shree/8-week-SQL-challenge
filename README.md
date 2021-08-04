@@ -18,6 +18,7 @@ Questions:
 
 Answer SQL queries:
 1.
+'''
 SELECT
   	dannys_diner.sales.customer_id,
     SUM(price) AS total_amount
@@ -26,6 +27,7 @@ SELECT
 	ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
 GROUP BY dannys_diner.sales.customer_id
 ORDER BY dannys_diner.sales.customer_id;
+'''
 
 [Try the code here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
 
