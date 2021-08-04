@@ -18,7 +18,8 @@ Questions:
 
 Answer SQL queries:
 1.
-`(inline code)`
+
+```
 
 SELECT
   	dannys_diner.sales.customer_id,
@@ -29,7 +30,7 @@ SELECT
 GROUP BY dannys_diner.sales.customer_id
 ORDER BY dannys_diner.sales.customer_id;
 
-`(inline code)`
+```
 
 [Try the code here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
 
