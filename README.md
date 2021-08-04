@@ -1,5 +1,5 @@
 # 8-week-SQL-challenge
-This lists the problems and solutions of [Danny Ma's 8 week fun SQL challenge!](https://8weeksqlchallenge.com/getting-started/)
+This lists the fun problems and solutions of [Danny Ma's 8 week SQL challenge!](https://8weeksqlchallenge.com/getting-started/)
 
 First week:
 [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)
