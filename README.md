@@ -48,6 +48,8 @@ SELECT
 ```
 
 Question3. What was the first item from the menu purchased by each customer?
+Answer SQL query:
+
 ```
 SELECT
   	dannys_diner.menu.product_name,
