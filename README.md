@@ -47,4 +47,18 @@ SELECT
 
 ```
 
+Question3. What was the first item from the menu purchased by each customer?
+```
+SELECT
+  	dannys_diner.menu.product_name,
+    dannys_diner.sales.customer_id,
+    dannys_diner.sales.order_date
+	FROM dannys_diner.sales
+	INNER JOIN dannys_diner.menu
+	ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+GROUP BY dannys_diner.menu.product_name, dannys_diner.sales.customer_id, dannys_diner.sales.order_date
+ORDER BY dannys_diner.sales.order_date
+LIMIT 3;
+
+```
 [Try the codes here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
