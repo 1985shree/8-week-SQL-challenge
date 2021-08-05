@@ -54,4 +54,4 @@ ORDER BY dannys_diner.sales.order_date
 LIMIT 3;
 
 ```
-[Try the codes here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
+[Try the codes here](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
