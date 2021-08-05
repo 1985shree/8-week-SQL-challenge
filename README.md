@@ -45,7 +45,6 @@ SELECT
  GROUP BY dannys_diner.sales.customer_id
  ORDER BY dannys_diner.sales.customer_id;
 
-[Try the code here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
-
 ```
+
 [Try the codes here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
