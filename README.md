@@ -4,9 +4,8 @@ This lists the fun problems and solutions of [Danny Ma's 8 week SQL challenge!](
 First week:
 [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)
 
-Questions:
-1. What is the total amount each customer spent at the restaurant?
-2. How many days has each customer visited the restaurant?
+
+
 3. What was the first item from the menu purchased by each customer?
 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 5. Which item was the most popular for each customer?
@@ -16,8 +15,9 @@ Questions:
 9.  If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
 
-Answer SQL queries:
-1.
+Question1. What is the total amount each customer spent at the restaurant?
+
+Answer SQL query:
 
 ```
 
@@ -32,9 +32,10 @@ ORDER BY dannys_diner.sales.customer_id;
 
 ```
 
-[Try the code here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
 
-2.
+Question2. How many days has each customer visited the restaurant?
+
+Answer SQL query:
 
 ```
 SELECT
@@ -47,4 +48,4 @@ SELECT
 [Try the code here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
 
 ```
-[Try the code here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
+[Try the codes here:](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
