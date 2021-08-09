@@ -1,4 +1,4 @@
-# 8-week-SQL-challenge
+# 8-week-SQL-challenge: week 1
 
 First week:
 [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)
