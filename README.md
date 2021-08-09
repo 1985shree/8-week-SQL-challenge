@@ -27,7 +27,7 @@ Question2. How many days has each customer visited the restaurant?
 
 Answer SQL query:
 
-```
+```SQL
 SELECT
 	dannys_diner.sales.customer_id, 
     COUNT(order_date) as count
@@ -41,7 +41,7 @@ Question3. What was the first item from the menu purchased by each customer?
 
 Answer SQL query:
 
-```
+```SQL
 SELECT
   	dannys_diner.menu.product_name,
     dannys_diner.sales.customer_id,
