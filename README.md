@@ -160,4 +160,26 @@ GROUP BY Customer;
 
 ```
 
+Question9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
+
+SQL query to find the answer:
+
+```SQL
+
+SELECT
+  	dannys_diner.menu.product_name,
+    dannys_diner.sales.customer_id AS customer, 
+    COUNT(dannys_diner.menu.product_name) AS count,
+    	CASE WHEN dannys_diner.menu.product_name == "ramen" THEN total_points = count*20
+    	ELSE total_points = count*10 END AS total_points
+    
+    FROM dannys_diner.menu
+	INNER JOIN dannys_diner.sales
+    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+    
+GROUP BY customer, dannys_diner.menu.product_name
+ORDER BY customer
+
+
+```
 [Try the codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
