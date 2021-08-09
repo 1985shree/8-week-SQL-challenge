@@ -1,8 +1,11 @@
 # 8-week-SQL-challenge
-This lists the fun problems and solutions of [Danny Ma's 8 week SQL challenge!](https://8weeksqlchallenge.com/getting-started/)
 
 First week:
 [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)
+
+Here are the fun problems and solutions of [Danny Ma's 8 week SQL challenge!](https://8weeksqlchallenge.com/getting-started/)
+
+
 
 
 Question1. What is the total amount each customer spent at the restaurant?
@@ -109,6 +112,39 @@ SELECT
     WHERE ORDER_DATE > JOIN_DATE
 GROUP BY items, order_date, Customer
 ORDER BY order_date ASC;
+
+```
+
+Question7. Which item was purchased just before the customer became a member?
+
+SQL query to find the answer:
+
+```SQL
+
+SELECT
+  	dannys_diner.menu.product_name AS items,
+    dannys_diner.members.customer_id AS Customer, 
+    order_date
+    FROM dannys_diner.members
+	INNER JOIN dannys_diner.sales
+    ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
+    INNER JOIN dannys_diner.menu
+    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+    WHERE ORDER_DATE < JOIN_DATE
+GROUP BY items, order_date, Customer
+ORDER BY order_date ASC;
+
+
+```
+
+The answers to Q 6 and 7 surprised me since  there was no customer C in the result. A quick check in the original 'members' table reveals that customer C is not a member at all!
+
+Question8. What is the total items and amount spent for each member before they became a member?
+
+SQL query to find the answer:
+
+```SQL
+
 
 ```
 
