@@ -7,7 +7,7 @@ First week:
 
 Question1. What is the total amount each customer spent at the restaurant?
 
-Answer SQL query:
+SQL query to find the answer:
 
 ``` SQL
 
@@ -25,7 +25,7 @@ ORDER BY dannys_diner.sales.customer_id;
 
 Question2. How many days has each customer visited the restaurant?
 
-Answer SQL query:
+SQL query to find the answer:
 
 ```SQL
 SELECT
@@ -39,7 +39,7 @@ SELECT
 
 Question3. What was the first item from the menu purchased by each customer?
 
-Answer SQL query:
+SQL query to find the answer:
 
 ```SQL
 SELECT
@@ -56,6 +56,8 @@ LIMIT 3;
 ```
 
 Question4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+
+SQL query to find the answer
 
 ```SQL
 
