@@ -9,7 +9,7 @@ Question1. What is the total amount each customer spent at the restaurant?
 
 Answer SQL query:
 
-```
+``` SQL
 
 SELECT
   	dannys_diner.sales.customer_id,
