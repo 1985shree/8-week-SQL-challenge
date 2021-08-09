@@ -73,7 +73,7 @@ LIMIT 1;
 
 ```
 
-Question 5. 5. Which item was the most popular for each customer?
+Question5. Which item was the most popular for each customer?
 
 SQL query to find the answer:
 
@@ -88,6 +88,27 @@ SELECT
     ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
 GROUP BY Customer, dannys_diner.sales.product_id, dannys_diner.menu.product_name 
 ORDER BY Times_ordered DESC;
+
+```
+
+Question6. Which item was purchased first by the customer after they became a member?
+
+SQL query to find the answer:
+
+```SQL
+
+SELECT
+  	dannys_diner.menu.product_name AS items,
+    dannys_diner.members.customer_id AS Customer, 
+    order_date
+    FROM dannys_diner.members
+	INNER JOIN dannys_diner.sales
+    ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
+    INNER JOIN dannys_diner.menu
+    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+    WHERE ORDER_DATE > JOIN_DATE
+GROUP BY items, order_date, Customer
+ORDER BY order_date ASC;
 
 ```
 
