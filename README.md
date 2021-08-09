@@ -145,6 +145,18 @@ SQL query to find the answer:
 
 ```SQL
 
+SELECT
+  	Count(dannys_diner.menu.product_name) AS item_counts,
+    dannys_diner.members.customer_id AS Customer, 
+    SUM(price) as total_price
+    FROM dannys_diner.members
+	INNER JOIN dannys_diner.sales
+    ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
+    INNER JOIN dannys_diner.menu
+    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+    WHERE order_date < JOIN_DATE
+GROUP BY Customer;
+
 
 ```
 
