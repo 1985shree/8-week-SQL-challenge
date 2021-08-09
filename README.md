@@ -54,4 +54,20 @@ ORDER BY dannys_diner.sales.order_date
 LIMIT 3;
 
 ```
+
+Question4. What is the most purchased item on the menu and how many times was it purchased by all customers?
+
+```SQL
+
+SELECT
+  	COUNT(dannys_diner.sales.product_id)as Times_ordered,
+    dannys_diner.menu.product_name
+    FROM dannys_diner.sales
+	INNER JOIN dannys_diner.menu
+    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+GROUP BY dannys_diner.sales.product_id, dannys_diner.menu.product_name
+ORDER BY Times_ordered DESC
+LIMIT 1;
+
+```
 [Try the codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
