@@ -33,7 +33,7 @@ SQL query to find the answer:
 ```SQL
 SELECT
 	dannys_diner.sales.customer_id, 
-    COUNT(order_date) as count
+    COUNT(DISTINCT order_date) as count
     FROM dannys_diner.sales
  GROUP BY dannys_diner.sales.customer_id
  ORDER BY dannys_diner.sales.customer_id;
