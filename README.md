@@ -4,7 +4,7 @@ First week:
 [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)
 
 Here are the fun problems and solutions of [Danny Ma's 8 week SQL challenge!](https://8weeksqlchallenge.com/getting-started/)
-
+These problems are great if one wants to learn and understand SQL in real life context. 
 
 
 
