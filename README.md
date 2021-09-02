@@ -45,16 +45,21 @@ Question3. What was the first item from the menu purchased by each customer?
 SQL query to find the answer:
 
 ```SQL
-SELECT
-  	dannys_diner.menu.product_name,
-    dannys_diner.sales.customer_id,
-    dannys_diner.sales.order_date
-	FROM dannys_diner.sales
-	INNER JOIN dannys_diner.menu
-	ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
-GROUP BY dannys_diner.menu.product_name, dannys_diner.sales.customer_id, dannys_diner.sales.order_date
-ORDER BY dannys_diner.sales.order_date
-LIMIT 3;
+
+WITH first_sales AS
+	(SELECT
+  		dannys_diner.menu.product_name,
+    	dannys_diner.sales.customer_id,
+    	RANK () OVER (ORDER BY dannys_diner.sales.order_date) as RANK
+		FROM dannys_diner.sales
+		INNER JOIN dannys_diner.menu
+		ON dannys_diner.sales.product_id = dannys_diner.menu.product_id)
+    SELECT product_name, customer_id
+    FROM first_sales
+    WHERE RANK = 1
+    GROUP BY customer_id, product_name
+    ORDER BY customer_id
+
 
 ```
 
