@@ -10,7 +10,7 @@ These problems are great if one wants to learn and understand SQL in real life c
 
 Question1. What is the total amount each customer spent at the restaurant?
 
-SQL query to find the answer:
+This requires a simple sum of price, aggregated for each customer.
 
 ``` SQL
 
@@ -28,7 +28,7 @@ ORDER BY dannys_diner.sales.customer_id;
 
 Question2. How many days has each customer visited the restaurant?
 
-SQL query to find the answer:
+This is a bit tricky, because a customer may have ordered more than once on a day. To be sure we do not count a date twice, we should use 'DISTINCT' order dates! surely enough, you'll get two different answers if you try the code below with and without the keyword 'DISTINCT'.
 
 ```SQL
 SELECT
@@ -42,7 +42,7 @@ SELECT
 
 Question3. What was the first item from the menu purchased by each customer?
 
-SQL query to find the answer:
+The queries start getting complicated. To get the 'first' item we need to use a rank function. I defined a new table as first_sales in the beginning and then chose RANK = 1 to truly separate out the first sales.
 
 ```SQL
 
