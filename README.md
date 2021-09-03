@@ -61,11 +61,7 @@ WITH first_sales AS
     ORDER BY customer_id
 
 
-```
-
-
----SQL
-
+Query output: 
 
 | product_name | customer_id |
 | ------------ | ----------- |
@@ -75,9 +71,6 @@ WITH first_sales AS
 | ramen        | C           |
 
 ---
-
-[View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
-```
 
 
 Question4. What is the most purchased item on the menu and how many times was it purchased by all customers?
