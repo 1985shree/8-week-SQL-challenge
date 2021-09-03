@@ -63,6 +63,23 @@ WITH first_sales AS
 
 ```
 
+
+---SQL
+
+
+| product_name | customer_id |
+| ------------ | ----------- |
+| curry        | A           |
+| sushi        | A           |
+| curry        | B           |
+| ramen        | C           |
+
+---
+
+[View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
+```
+
+
 Question4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 
 SQL query to find the answer
