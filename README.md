@@ -60,6 +60,7 @@ WITH first_sales AS
     GROUP BY customer_id, product_name
     ORDER BY customer_id
 
+```
 
 Query output: 
 
@@ -70,7 +71,7 @@ Query output:
 | curry        | B           |
 | ramen        | C           |
 
----
+
 
 
 Question4. What is the most purchased item on the menu and how many times was it purchased by all customers?
