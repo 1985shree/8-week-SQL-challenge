@@ -33,10 +33,6 @@ Output:
 | C           | 36           |
 
 
-
-[View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
-
-
 Question2. How many days has each customer visited the restaurant?
 
 This is a bit tricky, because a customer may have ordered more than once on a day. To be sure we do not count a date twice, we should use 'DISTINCT' order dates! surely enough, you'll get two different answers if you try the code below with and without the keyword 'DISTINCT'.
