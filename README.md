@@ -46,6 +46,15 @@ SELECT
  ORDER BY dannys_diner.sales.customer_id;
 
 ```
+Output:
+
+| customer_id | count |
+| ----------- | ----- |
+| A           | 4     |
+| B           | 6     |
+| C           | 2     |
+
+
 
 Question3. What was the first item from the menu purchased by each customer?
 
