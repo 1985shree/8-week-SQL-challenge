@@ -146,24 +146,36 @@ looks like customers A and C are ordered the same item exactly the same number o
 
 Question6. Which item was purchased first by the customer after they became a member?
 
-SQL query to find the answer:
+Similar to the previous problem, this too requires ranking with respect to order date and partitioning with respect to customers in the newly defined table. The added level of complication here is the joining of 3 tables.
 
 ```SQL
+    WITH ranked_order_dates AS
+    	(SELECT
+        	RANK () OVER (PARTITION BY dannys_diner.sales.customer_id ORDER BY dannys_diner.sales.order_date),
+         dannys_diner.sales.customer_id AS customers,
+         dannys_diner.sales.order_date AS order_date,
+         dannys_diner.menu.product_name AS item
+         FROM dannys_diner.sales
+         INNER JOIN dannys_diner.menu
+         ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+         INNER JOIN dannys_diner.members
+         ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
+         WHERE order_date > join_date)
+    SELECT customers, order_date, item, rank
+    FROM ranked_order_dates
+    WHERE RANK = 1;
+    
+ ```
+ 
+ The result shows only customers A and B. It means that C had not purchased anything before become a member 
+ 
+ 
+| customers | order_date               | item  | rank |
+| --------- | ------------------------ | ----- | ---- |
+| A         | 2021-01-10T00:00:00.000Z | ramen | 1    |
+| B         | 2021-01-11T00:00:00.000Z | sushi | 1    |
 
-SELECT
-  	dannys_diner.menu.product_name AS items,
-    dannys_diner.members.customer_id AS Customer, 
-    order_date
-    FROM dannys_diner.members
-	INNER JOIN dannys_diner.sales
-    ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
-    INNER JOIN dannys_diner.menu
-    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
-    WHERE ORDER_DATE > JOIN_DATE
-GROUP BY items, order_date, Customer
-ORDER BY order_date ASC;
 
-```
 
 Question7. Which item was purchased just before the customer became a member?
 
