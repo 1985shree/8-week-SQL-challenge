@@ -113,7 +113,7 @@ Query output:
 
 Question 5.Which item was the most popular for each customer?
 
-This requires grouping according to customer id and requires rank function to rank in descending order according to the number of times (i.e. count) a product has been ordered by each customer. First a new table is defined with the defined order of rank as 'RANK'. Choosing 'RANK' = 1 then selects the most purchased items. Rank will be same for customers who ordered same number of times.
+This requires grouping according to customer id and requires rank function to rank in descending order according to the number of times (i.e. count) a product has been ordered by each customer. This time we will use PARTITION with respect to customers to get ranks for individual customers. First a new table is defined with the defined order of rank as 'RANK'. Choosing 'RANK' = 1 then selects the most purchased items. Rank will be same for customers who ordered same number of times.
 
 ```SQL
 
@@ -132,13 +132,16 @@ FROM Times_ordered
 WHERE RANK = 1;
 
 ```
-looks like customers A and C are tied in the first place for ordering the same item exactly the same number of times.
+looks like customers A and C are ordered the same item exactly the same number of times, while customer B tried everything the same number of times!
+
 
 | rank | customer | item  | count |
 | ---- | -------- | ----- | ----- |
-| 1    | C        | ramen | 3     |
 | 1    | A        | ramen | 3     |
-
+| 1    | B        | ramen | 2     |
+| 1    | B        | curry | 2     |
+| 1    | B        | sushi | 2     |
+| 1    | C        | ramen | 3     |
 
 
 Question6. Which item was purchased first by the customer after they became a member?
