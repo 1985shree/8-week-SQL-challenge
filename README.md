@@ -167,7 +167,7 @@ Similar to the previous problem, this too requires ranking with respect to order
     
  ```
  
- The result shows only customers A and B. It means that C had not purchased anything before become a member 
+ The result shows only customers A and B. What does it mean? we'll see soon.
  
  
 | customers | order_date               | item  | rank |
@@ -179,31 +179,40 @@ Similar to the previous problem, this too requires ranking with respect to order
 
 Question7. Which item was purchased just before the customer became a member?
 
-SQL query to find the answer:
+This builds up in line with the previous question. The difference here is to order the dates in descending order (so that the latest date ranks first) and select order dates before joining date.
 
 ```SQL
 
-SELECT
-  	dannys_diner.menu.product_name AS items,
-    dannys_diner.members.customer_id AS Customer, 
-    order_date
-    FROM dannys_diner.members
-	INNER JOIN dannys_diner.sales
-    ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
-    INNER JOIN dannys_diner.menu
-    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
-    WHERE ORDER_DATE < JOIN_DATE
-GROUP BY items, order_date, Customer
-ORDER BY order_date ASC;
-
+WITH ranked_order_dates AS
+    	(SELECT
+        	RANK () OVER (PARTITION BY dannys_diner.sales.customer_id ORDER BY dannys_diner.sales.order_date DESC),
+         dannys_diner.sales.customer_id AS customers,
+         dannys_diner.sales.order_date AS order_date,
+         dannys_diner.menu.product_name AS item
+         FROM dannys_diner.sales
+         INNER JOIN dannys_diner.menu
+         ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+         INNER JOIN dannys_diner.members
+         ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
+         WHERE order_date < join_date)
+    SELECT customers, order_date, item, rank
+    FROM ranked_order_dates
+    WHERE RANK = 1;
 
 ```
+
+| customers | order_date               | item  | rank |
+| --------- | ------------------------ | ----- | ---- |
+| A         | 2021-01-01T00:00:00.000Z | sushi | 1    |
+| A         | 2021-01-01T00:00:00.000Z | curry | 1    |
+| B         | 2021-01-04T00:00:00.000Z | sushi | 1    |
+
 
 The answers to Q 6 and 7 surprised me since  there was no customer C in the result. A quick check in the original 'members' table reveals that customer C is not a member at all!
 
 Question8. What is the total items and amount spent for each member before they became a member?
 
-SQL query to find the answer:
+This again requires joining of 3 tables and selecting order dates later than joining dates.
 
 ```SQL
 
@@ -221,6 +230,13 @@ GROUP BY Customer;
 
 
 ```
+
+
+| item_counts | customer | total_price |
+| ----------- | -------- | ----------- |
+| 3           | B        | 40          |
+| 2           | A        | 25          |
+
 
 Question9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 
