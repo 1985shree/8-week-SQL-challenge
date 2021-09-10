@@ -113,21 +113,32 @@ Query output:
 
 Question 5.Which item was the most popular for each customer?
 
-SQL query to find the answer:
-
+This requires grouping according to customer id and requires rank function to rank in descending order according to the number of times (i.e. count) a product has been ordered by each customer. 
 ```SQL
 
-SELECT
-  	COUNT(dannys_diner.sales.product_id)as Times_ordered,
-    dannys_diner.menu.product_name,
-    dannys_diner.sales.customer_id as Customer
-    FROM dannys_diner.sales
-	INNER JOIN dannys_diner.menu
-    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
-GROUP BY Customer, dannys_diner.sales.product_id, dannys_diner.menu.product_name 
-ORDER BY Times_ordered DESC;
+WITH Times_ordered AS
+	(SELECT
+  		RANK () OVER (ORDER BY COUNT(dannys_diner.sales.product_id) DESC) AS RANK,
+    	dannys_diner.menu.product_name as item,
+    	dannys_diner.sales.customer_id as customer, 
+        COUNT(dannys_diner.sales.product_id) as count                             
+    	FROM dannys_diner.sales
+		INNER JOIN dannys_diner.menu
+    	ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+        GROUP BY Customer, dannys_diner.menu.product_name, customer)
+SELECT RANK, customer,  item, count
+FROM Times_ordered   
+WHERE RANK = 1;
 
 ```
+looks like customers A and C are tied in the first place for ordering the same item exactly the same number of times.
+
+| rank | customer | item  | count |
+| ---- | -------- | ----- | ----- |
+| 1    | C        | ramen | 3     |
+| 1    | A        | ramen | 3     |
+
+
 
 Question6. Which item was purchased first by the customer after they became a member?
 
