@@ -113,9 +113,6 @@ Query output:
 
 
 
-[View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
-Question5. Which item was the most popular for each customer?
-
 SQL query to find the answer:
 
 ```SQL
