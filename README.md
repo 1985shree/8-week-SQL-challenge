@@ -90,7 +90,7 @@ Query output:
 
 Question4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 
-SQL query to find the answer
+This is again relatively simple.
 
 ```SQL
 
@@ -105,7 +105,15 @@ ORDER BY Times_ordered DESC
 LIMIT 1;
 
 ```
+Query output:
 
+| times_ordered | product_name |
+| ------------- | ------------ |
+| 8             | ramen        |
+
+
+
+[View on DB Fiddle](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
 Question5. Which item was the most popular for each customer?
 
 SQL query to find the answer:
