@@ -1,12 +1,10 @@
 # 8-week-SQL-challenge: week 1
 
+Here are the fun problems and solutions of [Danny Ma's 8 week SQL challenge!](https://8weeksqlchallenge.com/getting-started/)
+These problems are great if one wants to learn and understand SQL in real life context.
+
 First week:
 check out the tables and problems here in [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)
-
-Here are the fun problems and solutions of [Danny Ma's 8 week SQL challenge!](https://8weeksqlchallenge.com/getting-started/)
-These problems are great if one wants to learn and understand SQL in real life context. 
-
-
 
 Question1. What is the total amount each customer spent at the restaurant?
 
