@@ -113,7 +113,8 @@ Query output:
 
 Question 5.Which item was the most popular for each customer?
 
-This requires grouping according to customer id and requires rank function to rank in descending order according to the number of times (i.e. count) a product has been ordered by each customer. 
+This requires grouping according to customer id and requires rank function to rank in descending order according to the number of times (i.e. count) a product has been ordered by each customer. First a new table is defined with the defined order of rank as 'RANK'. Choosing 'RANK' = 1 then selects the most purchased items. Rank will be same for customers who ordered same number of times.
+
 ```SQL
 
 WITH Times_ordered AS
