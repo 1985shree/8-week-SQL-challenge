@@ -212,7 +212,7 @@ The answers to Q 6 and 7 surprised me since  there was no customer C in the resu
 
 Question8. What is the total items and amount spent for each member before they became a member?
 
-This again requires joining of 3 tables and selecting order dates later than joining dates.
+This again requires joining of 3 tables and selecting order dates which are after dates of joining.
 
 ```SQL
 
