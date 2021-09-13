@@ -240,24 +240,37 @@ GROUP BY Customer;
 
 Question9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 
-SQL query to find the answer:
+This requires settimg a condition (CASE WHEN) for item names and I used 'LIKE '%sushi''. Also, points had to be summed up for each customer. To achieve that, I've defined a table called 'customer_points' with 'GROUP BY' applied to items. Then I selected columns from the new table and grouped by customers.
 
 ```SQL
 
-SELECT
-  	dannys_diner.menu.product_name as item,
-    SUM(price) AS total_price,
-    dannys_diner.sales.customer_id AS customer,     
-    	CASE WHEN dannys_diner.menu.product_name LIKE '%sushi' THEN (20*SUM(price))
-    	ELSE (10*SUM(price)) END AS points
-               
-    FROM dannys_diner.sales
-	INNER JOIN dannys_diner.menu
-    ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
-                    
-                     
-GROUP BY customer, item
-ORDER BY customer;
+WITH customer_points AS
+    	(SELECT
+      	dannys_diner.menu.product_name as item,
+        SUM(price) AS total_price,
+        dannys_diner.sales.customer_id AS customer,     
+        	CASE WHEN dannys_diner.menu.product_name LIKE '%sushi' THEN (20*SUM(price))
+        	ELSE (10*SUM(price)) END AS points
+                   
+        FROM dannys_diner.sales
+    	INNER JOIN dannys_diner.menu
+        ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
+        GROUP BY item, customer)                
+                         
+    SELECT customer, SUM(points) as total_points
+    FROM customer_points
+    GROUP BY customer;
+```
+
+    
+
+| customer | total_points |
+| -------- | ------------ |
+| B        | 940          |
+| C        | 360          |
+| A        | 860          |
+
+---
 
 
 
