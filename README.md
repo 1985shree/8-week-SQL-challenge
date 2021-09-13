@@ -275,5 +275,4 @@ WITH customer_points AS
 
 
 
-```
 [Try the codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
