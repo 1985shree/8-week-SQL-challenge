@@ -270,9 +270,22 @@ WITH customer_points AS
 | C        | 360          |
 | A        | 860          |
 
----
+
+Question10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
+
+```SQL
+WITH customer_points AS
+	(SELECT dannys_diner.members.customer_id as customer,
+     
+     	CASE WHEN order_date BETWEEN join_date AND JON_DATE+7 THEN (2*SUM(price)) 
+     	ELSE SUM(price) END AS points
+    FROM dannys_diner.sales
+    INNER JOIN dannys_diner.members 
+    ON customer_id
+    INNER JOIN dannys_diner.menu
+                                                                          
+SELECT customer, 
+```
 
 
-
-
-[Try the codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
+[Try your own codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
