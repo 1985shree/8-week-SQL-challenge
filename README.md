@@ -277,14 +277,17 @@ Question10. In the first week after a customer joins the program (including thei
 WITH customer_points AS
 	(SELECT dannys_diner.members.customer_id as customer,
      
-     	CASE WHEN order_date BETWEEN join_date AND JON_DATE+7 THEN (2*SUM(price)) 
+     	CASE WHEN order_date BETWEEN join_date AND join_date+7 THEN (2*SUM(price)) 
      	ELSE SUM(price) END AS points
     FROM dannys_diner.sales
     INNER JOIN dannys_diner.members 
-    ON customer_id
+    ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
     INNER JOIN dannys_diner.menu
+    ON dannys_diner.menu.product_id = dannys_diner.sales.product_id
+    GROUP BY customer, order_date, join_date)                                                                     
                                                                           
-SELECT customer, 
+SELECT customer, points
+FROM customer_points
 ```
 
 
