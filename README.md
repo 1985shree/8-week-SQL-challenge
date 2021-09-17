@@ -6,6 +6,63 @@ These problems are great if one wants to learn and understand SQL in real life c
 First week:
 check out the tables and problems here in [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/)
 
+Schema SQL.
+```
+CREATE SCHEMA dannys_diner;
+SET search_path = dannys_diner;
+
+CREATE TABLE sales (
+  "customer_id" VARCHAR(1),
+  "order_date" DATE,
+  "product_id" INTEGER
+);
+
+INSERT INTO sales
+  ("customer_id", "order_date", "product_id")
+VALUES
+  ('A', '2021-01-01', '1'),
+  ('A', '2021-01-01', '2'),
+  ('A', '2021-01-07', '2'),
+  ('A', '2021-01-10', '3'),
+  ('A', '2021-01-11', '3'),
+  ('A', '2021-01-11', '3'),
+  ('B', '2021-01-01', '2'),
+  ('B', '2021-01-02', '2'),
+  ('B', '2021-01-04', '1'),
+  ('B', '2021-01-11', '1'),
+  ('B', '2021-01-16', '3'),
+  ('B', '2021-02-01', '3'),
+  ('C', '2021-01-01', '3'),
+  ('C', '2021-01-01', '3'),
+  ('C', '2021-01-07', '3');
+ 
+
+CREATE TABLE menu (
+  "product_id" INTEGER,
+  "product_name" VARCHAR(5),
+  "price" INTEGER
+);
+
+INSERT INTO menu
+  ("product_id", "product_name", "price")
+VALUES
+  ('1', 'sushi', '10'),
+  ('2', 'curry', '15'),
+  ('3', 'ramen', '12');
+  
+
+CREATE TABLE members (
+  "customer_id" VARCHAR(1),
+  "join_date" DATE
+);
+
+INSERT INTO members
+  ("customer_id", "join_date")
+VALUES
+  ('A', '2021-01-07'),
+  ('B', '2021-01-09');
+  
+```
 Question1. What is the total amount each customer spent at the restaurant?
 
 This requires a simple sum of price, aggregated for each customer.
@@ -273,6 +330,8 @@ WITH customer_points AS
 
 Question10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
 
+Again we have to use a complex clause, this time with 'BETWEEN' syntax to select dates within 1st week of joining. In the end one just needs to sum up the points for each customer!
+
 ```SQL
 WITH customer_points AS
 	(SELECT dannys_diner.members.customer_id as customer,
@@ -286,9 +345,20 @@ WITH customer_points AS
     ON dannys_diner.menu.product_id = dannys_diner.sales.product_id
     GROUP BY customer, order_date, join_date)                                                                     
                                                                           
-SELECT customer, points
+SELECT customer, SUM(points) AS total_points
 FROM customer_points
+GROUP BY customer
 ```
+
+
+| customer | total_points |
+| -------- | ------------ |
+| B        | 96           |
+| A        | 127          |
+
+
+
+Bonus question 1. Join All The Things
 
 
 [Try your own codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
