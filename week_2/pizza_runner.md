@@ -1,4 +1,6 @@
 # 8-week-SQL-challenge: week 2
+```SQL
+
 SELECT
   	dannys_diner.sales.customer_id,
     SUM(price) AS total_amount
@@ -7,3 +9,4 @@ SELECT
 	ON dannys_diner.sales.product_id = dannys_diner.menu.product_id
 GROUP BY dannys_diner.sales.customer_id
 ORDER BY dannys_diner.sales.customer_id;
+```
