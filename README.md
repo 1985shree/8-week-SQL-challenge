@@ -360,6 +360,47 @@ GROUP BY customer
 
 Bonus question 1. Join All The Things
 
+```SQL
+SELECT s.customer_id, s.order_date, mn.product_name, mn.price, 
+CASE WHEN order_date > join_date THEN 'Y'
+ELSE 'N' END AS member
+        
+FROM dannys_diner.sales s
+    
+LEFT JOIN dannys_diner.members m
+ON s.customer_id = m.customer_id 
+
+LEFT JOIN dannys_diner.menu mn
+ON mn.product_id = s.product_id 
+
+ORDER BY s.customer_id, s.order_date
+
+
+```
+This could not exactly recreate the table in order but that's the closest I could get:
+
+
+| customer_id | order_date               | product_name | price | member |
+| ----------- | ------------------------ | ------------ | ----- | ------ |
+| A           | 2021-01-01T00:00:00.000Z | sushi        | 10    | N      |
+| A           | 2021-01-01T00:00:00.000Z | curry        | 15    | N      |
+| A           | 2021-01-07T00:00:00.000Z | curry        | 15    | N      |
+| A           | 2021-01-10T00:00:00.000Z | ramen        | 12    | Y      |
+| A           | 2021-01-11T00:00:00.000Z | ramen        | 12    | Y      |
+| A           | 2021-01-11T00:00:00.000Z | ramen        | 12    | Y      |
+| B           | 2021-01-01T00:00:00.000Z | curry        | 15    | N      |
+| B           | 2021-01-02T00:00:00.000Z | curry        | 15    | N      |
+| B           | 2021-01-04T00:00:00.000Z | sushi        | 10    | N      |
+| B           | 2021-01-11T00:00:00.000Z | sushi        | 10    | Y      |
+| B           | 2021-01-16T00:00:00.000Z | ramen        | 12    | Y      |
+| B           | 2021-02-01T00:00:00.000Z | ramen        | 12    | Y      |
+| C           | 2021-01-01T00:00:00.000Z | ramen        | 12    | N      |
+| C           | 2021-01-01T00:00:00.000Z | ramen        | 12    | N      |
+| C           | 2021-01-07T00:00:00.000Z | ramen        | 12    | N      |
+
+
+Bonus question 1. Join and Rank All The Things
+
 
 [Try your own codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
 
