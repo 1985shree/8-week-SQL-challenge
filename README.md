@@ -399,8 +399,50 @@ This could not exactly recreate the table in order but that's the closest I coul
 | C           | 2021-01-07T00:00:00.000Z | ramen        | 12    | N      |
 
 
-Bonus question 1. Join and Rank All The Things
+Bonus question 2. Join and Rank All The Things
 
+```SQL
+    WITH customer_table AS(
+    
+    	SELECT s.customer_id, s.order_date, mn.product_name, mn.price, 
+    	CASE WHEN order_date > join_date THEN 'Y'
+    	ELSE 'N' END AS member
+            
+    	FROM dannys_diner.sales s
+        
+    	LEFT JOIN dannys_diner.members m
+    	ON s.customer_id = m.customer_id 
+    
+    	LEFT JOIN dannys_diner.menu mn
+    	ON mn.product_id = s.product_id)
+        
+    SELECT *,
+    CASE WHEN member = 'N' THEN null
+    ELSE RANK() OVER (PARTITION BY customer_id, member ORDER BY customer_id, order_date) END AS ranking
+    FROM customer_table;
+    
+```    
+
+
+| customer_id | order_date               | product_name | price | member | ranking |
+| ----------- | ------------------------ | ------------ | ----- | ------ | ------- |
+| A           | 2021-01-01T00:00:00.000Z | sushi        | 10    | N      |         |
+| A           | 2021-01-01T00:00:00.000Z | curry        | 15    | N      |         |
+| A           | 2021-01-07T00:00:00.000Z | curry        | 15    | N      |         |
+| A           | 2021-01-10T00:00:00.000Z | ramen        | 12    | Y      | 1       |
+| A           | 2021-01-11T00:00:00.000Z | ramen        | 12    | Y      | 2       |
+| A           | 2021-01-11T00:00:00.000Z | ramen        | 12    | Y      | 2       |
+| B           | 2021-01-01T00:00:00.000Z | curry        | 15    | N      |         |
+| B           | 2021-01-02T00:00:00.000Z | curry        | 15    | N      |         |
+| B           | 2021-01-04T00:00:00.000Z | sushi        | 10    | N      |         |
+| B           | 2021-01-11T00:00:00.000Z | sushi        | 10    | Y      | 1       |
+| B           | 2021-01-16T00:00:00.000Z | ramen        | 12    | Y      | 2       |
+| B           | 2021-02-01T00:00:00.000Z | ramen        | 12    | Y      | 3       |
+| C           | 2021-01-01T00:00:00.000Z | ramen        | 12    | N      |         |
+| C           | 2021-01-01T00:00:00.000Z | ramen        | 12    | N      |         |
+| C           | 2021-01-07T00:00:00.000Z | ramen        | 12    | N      |         |
+
+This too is not exactly the duplicate but close. Will be happy to edit and refine my skills over the next week's challenges!
 
 [Try your own codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
 
