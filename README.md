@@ -446,4 +446,4 @@ This too is not exactly the duplicate but close. Will be happy to edit and refin
 
 [Try your own codes here to check the answers!](https://www.db-fiddle.com/f/2rM8RAnq7h5LLDTzZiRWcd/138)
 
-[check these ideal codes too!](https://github.com/AlysterF/8week-SQL-challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/case_solutions.md)
+[check these great codes too!](https://github.com/AlysterF/8week-SQL-challenge/blob/main/Case%20Study%20%231%20-%20Danny's%20Diner/case_solutions.md)
