@@ -336,8 +336,8 @@ Again we have to use a complex clause, this time with 'BETWEEN' syntax to select
 WITH customer_points AS
 	(SELECT dannys_diner.members.customer_id as customer,
      
-     	CASE WHEN order_date BETWEEN join_date AND join_date+7 THEN (2*SUM(price)) 
-     	ELSE SUM(price) END AS points
+     	CASE WHEN order_date BETWEEN join_date AND join_date+7 THEN (20*SUM(price)) 
+     	ELSE (10*SUM(price)) END AS points
     FROM dannys_diner.sales
     INNER JOIN dannys_diner.members 
     ON dannys_diner.sales.customer_id = dannys_diner.members.customer_id
@@ -353,8 +353,8 @@ GROUP BY customer
 
 | customer | total_points |
 | -------- | ------------ |
-| B        | 96           |
-| A        | 127          |
+| B        | 960           |
+| A        | 1270          |
 
 
 
