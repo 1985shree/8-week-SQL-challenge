@@ -4,6 +4,23 @@
 # A. Pizza Metrics
 
     How many pizzas were ordered?
+    
+```SQL
+
+    SELECT COUNT(order_id) AS pizza_count
+    FROM pizza_runner.customer_orders;
+
+
+```
+
+| pizza_count |
+| ----- |
+| 14    |
+
+
+
+
+[View on DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65)
     How many unique customer orders were made?
     How many successful orders were delivered by each runner?
     How many of each type of pizza was delivered?
