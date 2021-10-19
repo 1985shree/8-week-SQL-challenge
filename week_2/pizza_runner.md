@@ -38,7 +38,8 @@
     
 ```SQL
 
-    SELECT COUNT (DISTINCT co.order_id) AS successful_deliveries
+  
+    SELECT ro.runner_id , COUNT (DISTINCT co.order_id) AS successful_deliveries
     FROM pizza_runner.customer_orders co
     INNER JOIN pizza_runner.runner_orders ro
     ON co.order_id = ro.order_id
@@ -47,11 +48,11 @@
     
 ```
 
-| successful_deliveries |
-| --------------------- |
-| 1                     |
-| 1                     |
-| 1                     |
+| runner_id | successful_deliveries |
+| --------- | --------------------- |
+| 1         | 1                     |
+| 2         | 1                     |
+| 3         | 1                     |
 
 
 
