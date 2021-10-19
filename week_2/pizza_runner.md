@@ -34,8 +34,28 @@
 | 10                     |
 
 
-[View on DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65)
     How many successful orders were delivered by each runner?
+    
+```SQL
+
+    SELECT COUNT (DISTINCT co.order_id) AS successful_deliveries
+    FROM pizza_runner.customer_orders co
+    INNER JOIN pizza_runner.runner_orders ro
+    ON co.order_id = ro.order_id
+    WHERE cancellation IS null
+    GROUP BY ro.runner_id;
+    
+```
+
+| successful_deliveries |
+| --------------------- |
+| 1                     |
+| 1                     |
+| 1                     |
+
+
+
+
     How many of each type of pizza was delivered?
     How many Vegetarian and Meatlovers were ordered by each customer?
     What was the maximum number of pizzas delivered in a single order?
