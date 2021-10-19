@@ -22,6 +22,19 @@
 
 
     How many unique customer orders were made?
+    
+```SQL
+    SELECT COUNT (DISTINCT order_id) AS unique_customer_orders
+    FROM pizza_runner.customer_orders;
+    
+```
+
+| unique_customer_orders |
+| ---------------------- |
+| 10                     |
+
+
+[View on DB Fiddle](https://www.db-fiddle.com/f/7VcQKQwsS3CTkGRFG7vu98/65)
     How many successful orders were delivered by each runner?
     How many of each type of pizza was delivered?
     How many Vegetarian and Meatlovers were ordered by each customer?
