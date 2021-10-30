@@ -106,6 +106,27 @@
  
 
     What was the maximum number of pizzas delivered in a single order?
+    
+```SQL
+
+    WITH max_pizzas AS(
+    	SELECT cu.order_id AS order, (COUNT(cu.pizza_id)) AS max_number
+        FROM pizza_runner.customer_orders cu
+        
+        JOIN pizza_runner.runner_orders ru
+        ON cu.order_id = ru.order_id
+        WHERE cancellation IS null
+        GROUP BY cu.order_id)
+        
+    SELECT MAX(max_number) AS highest_number
+    FROM max_pizzas;
+    
+```
+
+| highest_number |
+| -------------- |
+| 3              |
+
     For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
     How many pizzas were delivered that had both exclusions and extras?
     What was the total volume of pizzas ordered for each hour of the day?
