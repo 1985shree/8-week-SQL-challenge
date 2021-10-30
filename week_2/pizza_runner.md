@@ -82,7 +82,7 @@
     How many Vegetarian and Meatlovers were ordered by each customer?
 ```SQL
 
-    SELECT cu.customer_id, COUNT(cu.pizza_id) AS total_number, pn.pizza_name AS  name
+    SELECT cu.customer_id, pn.pizza_name AS  name, COUNT(cu.pizza_id) AS total_number
     FROM pizza_runner.customer_orders cu
     INNER JOIN pizza_runner.pizza_names pn
     ON cu.pizza_id = pn.pizza_id
@@ -92,16 +92,17 @@
     
 ```
 
-| customer_id | total_number | name       |
-| ----------- | ------------ | ---------- |
-| 101         | 2            | Meatlovers |
-| 101         | 1            | Vegetarian |
-| 102         | 2            | Meatlovers |
-| 102         | 1            | Vegetarian |
-| 103         | 3            | Meatlovers |
-| 103         | 1            | Vegetarian |
-| 104         | 3            | Meatlovers |
-| 105         | 1            | Vegetarian |
+| customer_id | name       | total_number |
+| ----------- | ---------- | ------------ |
+| 101         | Meatlovers | 2            |
+| 101         | Vegetarian | 1            |
+| 102         | Meatlovers | 2            |
+| 102         | Vegetarian | 1            |
+| 103         | Meatlovers | 3            |
+| 103         | Vegetarian | 1            |
+| 104         | Meatlovers | 3            |
+| 105         | Vegetarian | 1            |
+
 
 
     What was the maximum number of pizzas delivered in a single order?
