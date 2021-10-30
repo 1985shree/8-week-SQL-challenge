@@ -58,6 +58,27 @@
 
 
     How many of each type of pizza was delivered?
+    
+ ```SQL
+
+
+    SELECT cu.pizza_id, COUNT(cu.pizza_id) AS total_number, pn.pizza_name AS  name
+    FROM pizza_runner.customer_orders cu
+    INNER JOIN pizza_runner.pizza_names pn
+    ON cu.pizza_id = pn.pizza_id
+    INNER JOIN pizza_runner.runner_orders ru
+    ON cu.order_id = ru.runner_id
+    WHERE cancellation IS null
+    GROUP BY pn.pizza_name,  cu.pizza_id;
+    
+```
+
+| pizza_id | total_number | name       |
+| -------- | ------------ | ---------- |
+| 2        | 1            | Vegetarian |
+| 1        | 3            | Meatlovers |
+
+
     How many Vegetarian and Meatlovers were ordered by each customer?
     What was the maximum number of pizzas delivered in a single order?
     For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
