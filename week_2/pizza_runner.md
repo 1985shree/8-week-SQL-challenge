@@ -41,7 +41,7 @@
   
     SELECT ro.runner_id , COUNT (DISTINCT co.order_id) AS successful_deliveries
     FROM pizza_runner.customer_orders co
-    INNER JOIN pizza_runner.runner_orders ro
+    JOIN pizza_runner.runner_orders ro
     ON co.order_id = ro.order_id
     WHERE cancellation IS null
     GROUP BY ro.runner_id;
@@ -64,9 +64,9 @@
 
     SELECT cu.pizza_id, COUNT(cu.pizza_id) AS total_number, pn.pizza_name AS  name
     FROM pizza_runner.customer_orders cu
-    INNER JOIN pizza_runner.pizza_names pn
+    JOIN pizza_runner.pizza_names pn
     ON cu.pizza_id = pn.pizza_id
-    INNER JOIN pizza_runner.runner_orders ru
+    JOIN pizza_runner.runner_orders ru
     ON cu.order_id = ru.runner_id
     WHERE cancellation IS null
     GROUP BY pn.pizza_name,  cu.pizza_id;
@@ -84,7 +84,7 @@
 
     SELECT cu.customer_id, pn.pizza_name AS  name, COUNT(cu.pizza_id) AS total_number
     FROM pizza_runner.customer_orders cu
-    INNER JOIN pizza_runner.pizza_names pn
+    JOIN pizza_runner.pizza_names pn
     ON cu.pizza_id = pn.pizza_id
     
     GROUP BY pn.pizza_name,  cu.customer_id
