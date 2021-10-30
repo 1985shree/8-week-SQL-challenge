@@ -103,7 +103,7 @@
 | 104         | Meatlovers | 3            |
 | 105         | Vegetarian | 1            |
 
-
+ 
 
     What was the maximum number of pizzas delivered in a single order?
     For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
