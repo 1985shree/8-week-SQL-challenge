@@ -80,6 +80,30 @@
 
 
     How many Vegetarian and Meatlovers were ordered by each customer?
+```SQL
+
+    SELECT cu.customer_id, COUNT(cu.pizza_id) AS total_number, pn.pizza_name AS  name
+    FROM pizza_runner.customer_orders cu
+    INNER JOIN pizza_runner.pizza_names pn
+    ON cu.pizza_id = pn.pizza_id
+    
+    GROUP BY pn.pizza_name,  cu.customer_id
+    ORDER BY customer_id;
+    
+```
+
+| customer_id | total_number | name       |
+| ----------- | ------------ | ---------- |
+| 101         | 2            | Meatlovers |
+| 101         | 1            | Vegetarian |
+| 102         | 2            | Meatlovers |
+| 102         | 1            | Vegetarian |
+| 103         | 3            | Meatlovers |
+| 103         | 1            | Vegetarian |
+| 104         | 3            | Meatlovers |
+| 105         | 1            | Vegetarian |
+
+
     What was the maximum number of pizzas delivered in a single order?
     For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
     How many pizzas were delivered that had both exclusions and extras?
