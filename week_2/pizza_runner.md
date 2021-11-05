@@ -128,6 +128,38 @@
 | 3              |
 
     For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+
+```SQL
+
+    WITH changes AS(
+      SELECT co.customer_id as customer,
+      COUNT(co.order_id) AS status_change_count,
+      CASE WHEN co.exclusions IS null OR co.extras IS null THEN 'not changed'
+      ELSE 'changed' END AS status 
+        
+      FROM pizza_runner.customer_orders co
+      GROUP BY co.customer_id, co.exclusions, co.extras)
+      
+    SELECT customer, status, COUNT(status_change_count) AS change_count
+    
+    FROM changes
+    GROUP BY customer, status
+    ORDER BY customer;
+    
+```
+
+| customer | status      | change_count |
+| -------- | ----------- | ------------ |
+| 101      | changed     | 2            |
+| 102      | changed     | 2            |
+| 102      | not changed | 1            |
+| 103      | changed     | 2            |
+| 104      | changed     | 3            |
+| 105      | changed     | 1            |
+
+
     How many pizzas were delivered that had both exclusions and extras?
+    
+    
     What was the total volume of pizzas ordered for each hour of the day?
     What was the volume of orders for each day of the week?
