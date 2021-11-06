@@ -217,6 +217,8 @@
     FROM pizza_runner.customer_orders co
     GROUP BY day_of_week
     ORDER BY day_of_week;
+    
+```
 
 | day_of_week | per_day_volume |
 | ----------- | -------------- |
