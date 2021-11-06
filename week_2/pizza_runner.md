@@ -209,4 +209,22 @@
     
     What was the volume of orders for each day of the week?
     
+```SQL
+
+    SELECT EXTRACT(DOW FROM co.order_time) as day_of_week,
+    COUNT(pizza_id) AS per_day_volume
+    
+    FROM pizza_runner.customer_orders co
+    GROUP BY day_of_week
+    ORDER BY day_of_week;
+
+| day_of_week | per_day_volume |
+| ----------- | -------------- |
+| 3           | 5              |
+| 4           | 3              |
+| 5           | 1              |
+| 6           | 5              |
+
+
+    
   
