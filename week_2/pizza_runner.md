@@ -160,6 +160,30 @@
 
     How many pizzas were delivered that had both exclusions and extras?
     
+```SQL
+
+    SELECT co.customer_id as customer,
+    COUNT(*) AS order_count
+        
+    FROM pizza_runner.customer_orders co
     
+    JOIN pizza_runner.runner_orders ro 
+    ON co.order_id = ro.order_id
+    WHERE co.exclusions IS NOT null and co.extras IS NOT null AND ro.cancellation IS NOT null
+    GROUP BY co.customer_id
+    ORDER BY co.customer_id;
+    
+```
+
+| customer | order_count |
+| -------- | ----------- |
+| 101      | 3           |
+| 102      | 1           |
+| 103      | 1           |
+| 104      | 2           |
+| 105      | 1           |
+
+
     What was the total volume of pizzas ordered for each hour of the day?
+    
     What was the volume of orders for each day of the week?
