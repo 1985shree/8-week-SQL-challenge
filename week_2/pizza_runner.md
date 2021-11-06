@@ -1,6 +1,8 @@
 # 8-week-SQL-challenge: week 2
 [Link to the challenge of this week](https://8weeksqlchallenge.com/case-study-2/)
 
+# [Pizza Runner](https://8weeksqlchallenge.com/images/case-study-designs/2.png)
+
 # A. Pizza Metrics
 
     How many pizzas were ordered?
