@@ -186,4 +186,27 @@
 
     What was the total volume of pizzas ordered for each hour of the day?
     
+ ```SQL
+
+    SELECT EXTRACT(HOUR FROM co.order_time) as hour,
+    COUNT(pizza_id) AS per_hour_volume
+    
+    FROM pizza_runner.customer_orders co
+    GROUP BY hour
+    ORDER BY hour;
+    
+```
+
+| hour | per_hour_volume |
+| ---- | --------------- |
+| 11   | 1               |
+| 13   | 3               |
+| 18   | 3               |
+| 19   | 1               |
+| 21   | 3               |
+| 23   | 3               |
+
+    
     What was the volume of orders for each day of the week?
+    
+  
